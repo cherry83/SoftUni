@@ -14,7 +14,7 @@ class coloringController extends Controller
     public function ColoringDefault()
     {
         $id = "colours_053-by_endi.png";
-        return $this->render('coloring.html.twig',['id'=>$id]);
+        return $this->render('coloring.html.twig',['outline'=>$id]);
     }
 
     /**
@@ -25,6 +25,6 @@ class coloringController extends Controller
      */
     public function Coloring($id)
     {
-        return $this->render('coloring.html.twig',['id'=>$id]);
+        return $this->render('coloring.html.twig',['outline'=>$id]);
     }
 }
