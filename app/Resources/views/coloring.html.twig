@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Coloring</h1>
+    {% if id is defined %}
+        <img src="/outlines/{{ id }}">
+    {% endif %}
+{% endblock %}
+
+
+
