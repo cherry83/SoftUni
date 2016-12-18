@@ -55,7 +55,7 @@ var drawingApp = (function () {
         toolHotspotStartX = drawingAreaX + drawingAreaWidth,
         toolHotspotStartY = 290,
 
-        totalLoadResources = 7,
+        totalLoadResources = 6,
 
         curLoadResNum = 0,
 
@@ -451,7 +451,7 @@ var drawingApp = (function () {
                 return;
             }
 
-            if (matchOutlineColor(r, g, b, a)) { // Return because clicked outline 
+            if (matchOutlineColor(r, g, b, a)) { // Return because clicked outline
                 return;
             }
 
@@ -528,7 +528,7 @@ var drawingApp = (function () {
 
                 cancel = function () {
                     if (curTool !== "bucket") {
-                         paint = false;
+                        paint = false;
                     }
                 },
 
@@ -562,7 +562,7 @@ var drawingApp = (function () {
                         }
                     }
 
-                    // Prevent the whole page from dragging if on mobile 
+                    // Prevent the whole page from dragging if on mobile
                     e.preventDefault();
                 },
 
