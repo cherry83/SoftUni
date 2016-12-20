@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Picture;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -25,6 +26,7 @@ class coloringController extends Controller
      */
     public function Coloring($id)
     {
-        return $this->render('coloring.html.twig',['outline'=>$id]);
+        $picture = $this->getDoctrine()->getRepository(Picture::class)->find($id);
+        return $this->render('coloring.html.twig',['outline'=>$picture->getFile()]);
     }
 }

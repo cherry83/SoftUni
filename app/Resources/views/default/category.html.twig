@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for picture in pictures %}
+        <a href="{{ path('coloring_id',{'id':picture.id}) }}"> {{  picture.title}} <br><img src="/outlines/{{ picture.file }}"></a>
+    {% endfor %}
+{% endblock %}
+
