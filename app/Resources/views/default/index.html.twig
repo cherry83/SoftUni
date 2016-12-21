@@ -2,6 +2,8 @@
 
 {% block body %}
     {% for category in categories %}
-        <a href="{{ path('category_id',{'id':category.id}) }}">{{  category.name}}</a>
+        <a class="btn btn-default" href="{{ path('category_id',{'id':category.id}) }}">{{  category.name}}</a>
+
+
     {% endfor %}
 {% endblock %}

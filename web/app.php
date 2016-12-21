@@ -1,18 +1,16 @@
-<?php
+<?
+  define ("VIEW_PATH" , "../app/Resources/views/");
+  define ("CONTROLER_PATH" , "../src/SoftUniProject/Controller/");
 
-use Symfony\Component\HttpFoundation\Request;
+  include CONTROLER_PATH.'mysqli.php';
 
-/** @var \Composer\Autoload\ClassLoader $loader */
-$loader = require __DIR__.'/../app/autoload.php';
-include_once __DIR__.'/../var/bootstrap.php.cache';
+  $url = explode ('/',$_SERVER['REDIRECT_URL']);
 
-$kernel = new AppKernel('prod', false);
-$kernel->loadClassCache();
-//$kernel = new AppCache($kernel);
+  if (isset($url[1]))
+    $page = CONTROLER_PATH.(file_exists(CONTROLER_PATH.$url[1].'.php')? $url[1] : '404').'.php';
+  else 
+    $page = CONTROLER_PATH.'homepage.php';
 
-// When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
-//Request::enableHttpMethodParameterOverride();
-$request = Request::createFromGlobals();
-$response = $kernel->handle($request);
-$response->send();
-$kernel->terminate($request, $response);
+  include CONTROLER_PATH.'homepage.php';
+  
+?>
