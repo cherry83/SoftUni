@@ -1,9 +1,0 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    {% for category in categories %}
-        <a class="btn btn-default" href="{{ path('category_id',{'id':category.id}) }}">{{  category.name}}</a>
-
-
-    {% endfor %}
-{% endblock %}
