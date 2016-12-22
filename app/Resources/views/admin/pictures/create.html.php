@@ -13,7 +13,7 @@
             <label class="col-sm-4 control-label" for="sel1">Категория:</label>
             <div class="col-sm-4 ">
                 <select class="form-control " id="sel1" name="category" required>
-                    <?=$categories?>
+                    <?= $categories ?>
                 </select>
             </div>
         </div>

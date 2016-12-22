@@ -1,5 +1,5 @@
 <?
 
-  include( VIEW_PATH.'drawing.html.php');
-  
+include(VIEW_PATH . 'drawing.html.php');
+
 ?>

@@ -23,7 +23,7 @@ if ($url[3] == 'edit') {
 
     $res = $mysqli->query("SELECT * FROM `categories` ORDER BY name");
     while ($category = $res->fetch_assoc()) {
-        $categories .= "<option value='{$category['id']}' ".($picture['category_id']==$category['id']?"selected":"").">{$category['name']}</option>";
+        $categories .= "<option value='{$category['id']}' " . ($picture['category_id'] == $category['id'] ? "selected" : "") . ">{$category['name']}</option>";
     }
 
     include(VIEW_PATH . '/admin/pictures/edit.html.php');

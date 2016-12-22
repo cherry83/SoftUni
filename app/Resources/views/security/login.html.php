@@ -1,4 +1,4 @@
-<form  class="form-horizontal" name="authenticate" action="/login" method="post">
+<form class="form-horizontal" name="authenticate" action="/login" method="post">
     <fieldset>
         <legend>Вписване</legend>
 
@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <div class="col-sm-4 col-sm-offset-4 centered">
-            	<?=$login_error ?>
+                <?= $login_error ?>
                 <a class="btn btn-default" href="/homepage">Отказ</a>
 
                 <button type="submit" class="btn btn-primary">Впиши се</button>

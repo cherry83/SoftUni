@@ -438,7 +438,7 @@ var drawingApp = (function () {
 
         // Start painting with paint bucket tool starting from pixel specified by startX and startY
         paintAt = function (startX, startY) {
-console.log('start '+startX+' '+ startY)
+            console.log('start ' + startX + ' ' + startY)
             var pixelPos = (startY * drawingAreaWidth + startX) * 4,
                 r = colorLayerData.data[pixelPos],
                 g = colorLayerData.data[pixelPos + 1],
@@ -453,7 +453,7 @@ console.log('start '+startX+' '+ startY)
             if (matchOutlineColor(r, g, b, a)) { // Return because clicked outline
                 return;
             }
-console.log(r +' '+ g +' '+ b);
+            console.log(r + ' ' + g + ' ' + b);
             floodFill(startX, startY, r, g, b);
 
             redraw();
