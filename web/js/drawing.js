@@ -216,7 +216,6 @@ var drawingApp = (function () {
             context.fillText("Размери", 40, toolHotspotStartY - 50);
             context.fillText("Цветове", 300, 45);
             context.fillText("Инструменти", 600, toolHotspotStartY - 50);
-            context.fillText(curTool, 620, toolHotspotStartY - 20);
 
             switch (curSize) {
                 case "small":
@@ -364,7 +363,7 @@ var drawingApp = (function () {
 
             colorLayerData.data[pixelPos] = r;
             colorLayerData.data[pixelPos + 1] = g;
-            colorLayerData.data[pixelPos + 2] = 16;//b;
+            colorLayerData.data[pixelPos + 2] = b;
             colorLayerData.data[pixelPos + 3] = a !== undefined ? a : 255;
         },
 
@@ -439,7 +438,7 @@ var drawingApp = (function () {
 
         // Start painting with paint bucket tool starting from pixel specified by startX and startY
         paintAt = function (startX, startY) {
-
+console.log('start '+startX+' '+ startY)
             var pixelPos = (startY * drawingAreaWidth + startX) * 4,
                 r = colorLayerData.data[pixelPos],
                 g = colorLayerData.data[pixelPos + 1],
@@ -454,7 +453,7 @@ var drawingApp = (function () {
             if (matchOutlineColor(r, g, b, a)) { // Return because clicked outline
                 return;
             }
-
+console.log(r +' '+ g +' '+ b);
             floodFill(startX, startY, r, g, b);
 
             redraw();
@@ -465,7 +464,7 @@ var drawingApp = (function () {
 
             var press = function (e) {
                     // Mouse down location
-                    
+
                     var sizeHotspotStartX,
                         rect = this.getBoundingClientRect(),
                         mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - rect.left, //this.offsetLeft,
@@ -512,10 +511,10 @@ var drawingApp = (function () {
                     if (curTool !== "bucket") {
                         if (paint) {
                             var rect = this.getBoundingClientRect(),
-	                        mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - rect.left, //this.offsetLeft,
-	                        mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - rect.top; //this.offsetTop;
-                        
-                        console.log("addClick(" + e.pageX + " - " + this.offsetLeft + "   " + drawingAreaX + ", " + e.pageY + " - " + drawingAreaY + ", true);");
+                                mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - rect.left, //this.offsetLeft,
+                                mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - rect.top; //this.offsetTop;
+
+                            console.log("addClick(" + e.pageX + " - " + this.offsetLeft + "   " + drawingAreaX + ", " + e.pageY + " - " + drawingAreaY + ", true);");
                             addClick(mouseX - drawingAreaX, mouseY - drawingAreaY, true);
                             redraw();
                         }
@@ -542,8 +541,8 @@ var drawingApp = (function () {
 
                     // Mouse down location
                     var rect = this.getBoundingClientRect(),
-                    	mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - rect.left, //this.offsetLeft,
-                        mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - rect.top; //this.offsetTop;
+                        mouseX = ~~((e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - rect.left), //this.offsetLeft,
+                        mouseY = ~~((e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - rect.top); //this.offsetTop;
 
                     if (curTool === "bucket") {
                         // Mouse click location on drawing area
@@ -560,7 +559,7 @@ var drawingApp = (function () {
                 dragDrawing = function (e) {
 
                     var rect = this.getBoundingClientRect(),
-                    	mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - rect.left, //this.offsetLeft,
+                        mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - rect.left, //this.offsetLeft,
                         mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - rect.top; //this.offsetTop;
 
                     if (curTool !== "bucket") {
@@ -626,7 +625,7 @@ var drawingApp = (function () {
         adjustImage = function (iArray) {
             var imageData = iArray.data;
             for (var i = 0; i < imageData.length; i += 4) {
-                if (imageData[i] > 250 && imageData[i + 1] > 250 && imageData[i + 2] > 250) {
+                if (imageData[i] > 252 && imageData[i + 1] > 252 && imageData[i + 2] > 252) {
                     imageData[i + 3] = 0;
                 }
             }
