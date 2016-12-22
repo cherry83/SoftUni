@@ -10,24 +10,21 @@ if ($url[3] == 'edit') {
 
     $id = intval($url[4]);
     if (isset($_POST['picture'])) {
-        $res = $mysqli->query("SELECT name FROM `pictures` WHERE id=$id");
-        $res = $res->fetch_assoc();
-        $category_edit = $res['name'];
 
-        $category_name = $mysqli->real_escape_string($_POST['category']['name']);
-
-        $res = $mysqli->query("SELECT * FROM `categories` WHERE name = '$category_name' ");
-        if ($res->num_rows > 0 && $category_edit != $category_name) {
-            $category_error = "<span>Има друга категория със същото име!</span>";
-        } else {
-            $res = $mysqli->query("UPDATE `pictures` SET name='$category_name' WHERE id={$id}");
-            header('location: /admin/pictures');
-            exit();
-        }
+        $title = $mysqli->real_escape_string($_POST['picture']['name']);
+        $category_id = intval($_POST['picture']['category']);
+        $res = $mysqli->query("UPDATE `pictures` SET title='$title', category_id='$category_id' WHERE id={$id}");
+        header('location: /admin/pictures');
+        exit();
     }
 
     $res = $mysqli->query("SELECT * FROM `pictures` WHERE id=$id");
-    $category = $res->fetch_assoc();
+    $picture = $res->fetch_assoc();
+
+    $res = $mysqli->query("SELECT * FROM `categories` ORDER BY name");
+    while ($category = $res->fetch_assoc()) {
+        $categories .= "<option value='{$category['id']}' ".($picture['category_id']==$category['id']?"selected":"").">{$category['name']}</option>";
+    }
 
     include(VIEW_PATH . '/admin/pictures/edit.html.php');
 

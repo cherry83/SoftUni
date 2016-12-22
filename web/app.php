@@ -3,6 +3,8 @@
   
   ob_start(); 
   
+  error_reporting(E_ERROR);
+  
   define ("VIEW_PATH" , "../app/Resources/views/");
   define ("CONTROLER_PATH" , "../src/SoftUniProject/Controller/");
   define ("ADMIN_CONTROLER_PATH" , "../src/SoftUniProject/Controller/Admin/");
