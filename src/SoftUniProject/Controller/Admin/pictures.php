@@ -37,6 +37,7 @@ if ($url[3] == 'edit') {
         $res = $res->fetch_assoc();
         $file = $res['file'];
         unlink("outlines/$file");
+        $mysqli->query("DELETE FROM `pictures` WHERE id=$id");
         header('location: /admin/pictures');
         exit();
     }
